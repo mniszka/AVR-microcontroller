@@ -1,24 +1,37 @@
+/*
+ * main.c
+ *
+ *  Created on: 14 lip 2021
+ *      Author: Aga
+ */
 #include <avr/io.h>
 #include <util/delay.h>
+#define LED_0 (1<<PD0)
+#define LED_1 (1<<PD1)
+#define LED_2 (1<<PD2)
+#define LED_3 (1<<PD3)
+#define delay (_delay_ms(1000))
 
-
-#define LED0 (1<<PB0)
-#define LED1 (1<<PB1)
-
-
-int main (){
-//linie PB0 i PB1 wyjściowe
-	DDRB |= LED0;
-	DDRB |= LED1;
-
-//naprzemienne zapalanie i gaszenie diody LED
+int main(){
+	DDRD |= (1<<PD0) | (1<<PD1) | (1<<PD2) | (1<<PD3);
 	for(;;){
-		PORTB &= ~LED0; //zeruj
-		_delay_ms(260);
-		PORTB |= LED0; //ustaw bit
-		_delay_ms(260);
-
+		PORTD |= LED_0;
+		delay;
+		PORTD  ^= LED_0;
+		delay;
+		PORTD |= LED_1;
+		delay;
+		PORTD ^= LED_1;
+		delay;
+		PORTD |= LED_2;
+		delay;
+		PORTD ^= LED_2;
+		delay;
+		PORTD|= LED_3;
+		delay;
+		PORTD ^= LED_3;
+		delay;
 	}
 
-	return 0;
 }
+
