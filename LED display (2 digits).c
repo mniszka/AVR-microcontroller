@@ -4,8 +4,8 @@
 int main()
 {
 int8_t i, k, m;
-unsigned char liczba_LED[10] = {
-		  0x3F,	// 0
+unsigned char LED_number[10] = {
+		 	0x3F,	// 0
 			0x06,	// 1
 			0x5B,	// 2
 			0x4F,	// 3
@@ -17,7 +17,7 @@ unsigned char liczba_LED[10] = {
 			0x6F,	// 9
 			};
 
-//ustaw kierunki transmisji
+//direction of transmission
 DDRB = 0xFF;
 DDRC = 0xFF;
 for(;;)
@@ -27,10 +27,10 @@ for(k=0; k<=9; k++)
 for(m=1; m<=10; m++)
 {
 PORTC = 0x01;
-PORTB = liczba_LED[k];
+PORTB = LED_number[k];
 _delay_ms(5);
 PORTC = 0x02;
-PORTB = liczba_LED[i];
+PORTB = LED_number[i];
 _delay_ms(5);
 }
 }
